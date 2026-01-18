@@ -53,7 +53,7 @@ const WORKOUTS = {
       id: "breathing",
       name: "Standing Breathing Reset",
       meta: "2 minutes",
-      demo: "plank",
+      demo: "standbreathe",
       cues: [
         "Stand tall, soft knees.",
         "Light brace like zipping tight jeans (not sucking in).",
@@ -93,7 +93,7 @@ const WORKOUTS = {
       id: "prone_y",
       name: "Prone Y-Raises",
       meta: "3 × 10",
-      demo: "plank",
+      demo: "proney",
       cues: [
         "Lie face down; arms overhead in a 'Y'.",
         "Lift arms slightly, thumbs up; squeeze upper back.",
@@ -119,7 +119,7 @@ const WORKOUTS = {
       id: "rolls",
       name: "Neck & Shoulder Rolls",
       meta: "1–2 minutes",
-      demo: "march",
+      demo: "neckroll",
       cues: [
         "Slow circles; no forcing.",
         "Relax shoulders down.",
@@ -171,7 +171,7 @@ const WORKOUTS = {
       id: "side_leg",
       name: "Side-Lying Leg Raises",
       meta: "3 × 10 / side",
-      demo: "plank",
+      demo: "sideleg",
       cues: [
         "Lie on your side; lift top leg slowly.",
         "Toes slightly down; feel outer hip.",
@@ -233,7 +233,7 @@ const WORKOUTS = {
       id: "E5",
       name: "Standing Breathing",
       meta: "1 minute",
-      demo: "plank",
+      demo: "standbreathe",
       cues: ["Light brace; breathe into ribs.", "Relax shoulders down."],
       sets: 1,
       isTimedOnly: true,
@@ -322,56 +322,57 @@ function demoSVG(kind){
 `,
     bridge: `
 <svg viewBox="0 0 320 240" role="img" aria-label="Stick figure glute bridge demo">
-  <line class="floor" x1="30" y1="210" x2="290" y2="210"/>
-  <g id="b" transform="translate(70,185)">
+  <line class="floor" x1="25" y1="210" x2="295" y2="210"/>
+  <g id="bridge" transform="translate(70,175)">
     <circle class="joint" cx="0" cy="0" r="8"/>
-    <line class="stick" x1="0" y1="0" x2="70" y2="0"/> <!-- torso -->
-    <line class="stick" x1="70" y1="0" x2="110" y2="25"/> <!-- thigh -->
-    <line class="stick" x1="110" y1="25" x2="140" y2="25"/> <!-- shin -->
-    <line class="stick" x1="10" y1="10" x2="-10" y2="35"/> <!-- arm -->
-    <line class="stick" x1="60" y1="10" x2="40" y2="35"/> <!-- arm -->
+    <line class="stick" x1="8" y1="0" x2="95" y2="18"/>
+    <circle class="joint" cx="95" cy="18" r="6"/>
+    <line class="stick" x1="95" y1="18" x2="130" y2="55"/>
+    <line class="stick" x1="130" y1="55" x2="178" y2="55"/>
+    <line class="stick" x1="95" y1="18" x2="128" y2="58" opacity=".65"/>
+    <line class="stick" x1="128" y1="58" x2="160" y2="58" opacity=".65"/>
+    <line class="stick" x1="25" y1="10" x2="5" y2="35" opacity=".75"/>
+    <line class="stick" x1="55" y1="16" x2="35" y2="40" opacity=".75"/>
   </g>
   <style>
-    #b{animation: lift 1.8s ease-in-out infinite; transform-origin:70px 185px}
-    @keyframes lift{
-      0%,100%{transform:translate(70px,185px) rotate(0deg)}
-      50%{transform:translate(70px,175px) rotate(-10deg)}
+    #bridge { transform-origin: 95px 18px; animation: hipLift 1.6s ease-in-out infinite; }
+    @keyframes hipLift{
+      0%,100%{ transform: translate(70px,175px) rotate(0deg); }
+      50%{ transform: translate(70px,165px) rotate(-14deg); }
     }
   </style>
 </svg>
 `,
     deadbug: `
 <svg viewBox="0 0 320 240" role="img" aria-label="Stick figure dead bug demo">
-  <line class="floor" x1="30" y1="210" x2="290" y2="210"/>
-  <g id="d" transform="translate(160,150)">
-    <circle class="joint" cx="0" cy="-70" r="8"/>
-    <line class="stick" x1="0" y1="-60" x2="0" y2="-20"/> <!-- torso -->
-    <g id="armL" transform-origin="0px -55px">
-      <line class="stick" x1="0" y1="-55" x2="-55" y2="-85"/>
+  <line class="floor" x1="25" y1="210" x2="295" y2="210"/>
+  <g id="db" transform="translate(160,170)">
+    <circle class="joint" cx="0" cy="-105" r="8"/>
+    <line class="stick" x1="0" y1="-95" x2="0" y2="-55"/>
+
+    <g id="armL" transform-origin="0px -90px">
+      <line class="stick" x1="0" y1="-90" x2="-55" y2="-120"/>
     </g>
-    <g id="armR" transform-origin="0px -55px">
-      <line class="stick" x1="0" y1="-55" x2="55" y2="-85"/>
+    <g id="armR" transform-origin="0px -90px">
+      <line class="stick" x1="0" y1="-90" x2="55" y2="-120"/>
     </g>
-    <g id="legL" transform-origin="0px -20px">
-      <line class="stick" x1="0" y1="-20" x2="-45" y2="10"/>
-      <line class="stick" x1="-45" y1="10" x2="-35" y2="55"/>
+
+    <circle class="joint" cx="0" cy="-55" r="6"/>
+
+    <g id="legL" transform-origin="0px -55px">
+      <line class="stick" x1="0" y1="-55" x2="-40" y2="-20"/>
+      <line class="stick" x1="-40" y1="-20" x2="-40" y2="20"/>
     </g>
-    <g id="legR" transform-origin="0px -20px">
-      <line class="stick" x1="0" y1="-20" x2="45" y2="10"/>
-      <line class="stick" x1="45" y1="10" x2="35" y2="55"/>
+    <g id="legR" transform-origin="0px -55px">
+      <line class="stick" x1="0" y1="-55" x2="40" y2="-20"/>
+      <line class="stick" x1="40" y1="-20" x2="40" y2="20"/>
     </g>
   </g>
   <style>
-    #armL{animation: armL 1.8s ease-in-out infinite}
-    #legR{animation: legR 1.8s ease-in-out infinite}
-    @keyframes armL{
-      0%,100%{transform:rotate(0deg)}
-      50%{transform:rotate(18deg)}
-    }
-    @keyframes legR{
-      0%,100%{transform:rotate(0deg)}
-      50%{transform:rotate(-18deg)}
-    }
+    #armL, #legR { animation: extendA 1.8s ease-in-out infinite; }
+    #armR, #legL { animation: extendB 1.8s ease-in-out infinite; }
+    @keyframes extendA{ 0%,100%{ transform: rotate(0deg); } 50%{ transform: rotate(22deg); } }
+    @keyframes extendB{ 0%,100%{ transform: rotate(22deg); } 50%{ transform: rotate(0deg); } }
   </style>
 </svg>
 `,
@@ -445,6 +446,90 @@ function demoSVG(kind){
   </style>
 </svg>
 `
+  ,
+    standbreathe: `<svg viewBox="0 0 320 240" role="img" aria-label="Stick figure standing breathing demo">
+  <line class="floor" x1="25" y1="210" x2="295" y2="210"/>
+  <g id="sb" transform="translate(160,60)">
+    <circle class="joint" cx="0" cy="0" r="10"/>
+    <line class="stick" x1="0" y1="10" x2="0" y2="90"/>
+    <line class="stick" x1="0" y1="30" x2="-35" y2="55" opacity=".85"/>
+    <line class="stick" x1="0" y1="30" x2="35" y2="55" opacity=".85"/>
+    <line class="stick" x1="0" y1="90" x2="-20" y2="150"/>
+    <line class="stick" x1="-20" y1="150" x2="-10" y2="200"/>
+    <line class="stick" x1="0" y1="90" x2="20" y2="150"/>
+    <line class="stick" x1="20" y1="150" x2="10" y2="200"/>
+    <ellipse id="rib" cx="0" cy="55" rx="28" ry="18" fill="none" stroke="rgba(126,231,135,.70)" stroke-width="5"/>
+  </g>
+  <style>
+    #rib{animation: breatheRing 3.2s ease-in-out infinite; transform-origin:160px 115px}
+    @keyframes breatheRing{
+      0%,100%{transform:translate(160px,60px) scale(1.00)}
+      50%{transform:translate(160px,60px) scale(1.10)}
+    }
+  </style>
+</svg>`
+  ,
+    proney: `<svg viewBox="0 0 320 240" role="img" aria-label="Stick figure prone Y-raise demo">
+  <line class="floor" x1="25" y1="210" x2="295" y2="210"/>
+  <g id="py" transform="translate(70,175)">
+    <circle class="joint" cx="0" cy="0" r="8"/>
+    <line class="stick" x1="8" y1="0" x2="120" y2="18"/>
+    <line class="stick" x1="120" y1="18" x2="190" y2="10"/>
+    <g id="armY" transform-origin="70px 8px">
+      <line class="stick" x1="60" y1="8" x2="20" y2="-20"/>
+      <line class="stick" x1="85" y1="12" x2="130" y2="-18"/>
+    </g>
+  </g>
+  <style>
+    #armY{animation: yraise 1.6s ease-in-out infinite}
+    @keyframes yraise{
+      0%,100%{transform:rotate(0deg)}
+      50%{transform:rotate(-10deg)}
+    }
+  </style>
+</svg>`
+  ,
+    sideleg: `<svg viewBox="0 0 320 240" role="img" aria-label="Stick figure side-lying leg raise demo">
+  <line class="floor" x1="25" y1="210" x2="295" y2="210"/>
+  <g id="sl" transform="translate(85,185)">
+    <circle class="joint" cx="0" cy="0" r="8"/>
+    <line class="stick" x1="8" y1="0" x2="105" y2="18"/>
+    <circle class="joint" cx="105" cy="18" r="6"/>
+    <line class="stick" x1="105" y1="18" x2="160" y2="35" opacity=".75"/>
+    <g id="topLeg" transform-origin="105px 18px">
+      <line class="stick" x1="105" y1="18" x2="170" y2="-2"/>
+    </g>
+  </g>
+  <style>
+    #topLeg{animation: legUp 1.4s ease-in-out infinite}
+    @keyframes legUp{
+      0%,100%{transform:rotate(0deg)}
+      50%{transform:rotate(-18deg)}
+    }
+  </style>
+</svg>`
+  ,
+    neckroll: `<svg viewBox="0 0 320 240" role="img" aria-label="Stick figure neck roll demo">
+  <line class="floor" x1="25" y1="210" x2="295" y2="210"/>
+  <g id="nr" transform="translate(160,70)">
+    <circle class="joint" cx="0" cy="0" r="10"/>
+    <line class="stick" x1="0" y1="10" x2="0" y2="100"/>
+    <line class="stick" x1="0" y1="35" x2="-35" y2="60" opacity=".85"/>
+    <line class="stick" x1="0" y1="35" x2="35" y2="60" opacity=".85"/>
+    <line class="stick" x1="0" y1="100" x2="-20" y2="155"/>
+    <line class="stick" x1="-20" y1="155" x2="-10" y2="205"/>
+    <line class="stick" x1="0" y1="100" x2="20" y2="155"/>
+    <line class="stick" x1="20" y1="155" x2="10" y2="205"/>
+    <path id="arc" d="M 0 -32 A 32 32 0 1 1 -0.1 -32" fill="none" stroke="rgba(140,170,255,.65)" stroke-width="6"/>
+  </g>
+  <style>
+    #arc{animation: roll 2.4s linear infinite}
+    @keyframes roll{
+      0%{transform:translate(160px,70px) rotate(0deg)}
+      100%{transform:translate(160px,70px) rotate(360deg)}
+    }
+  </style>
+</svg>`
   };
   return templates[kind] || templates.squat;
 }
