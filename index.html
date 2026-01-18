@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Trainer Lite (Private)</title>
+  <meta name="theme-color" content="#111111" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">TL</div>
+      <div>
+        <div class="title">Trainer Lite</div>
+        <div class="subtitle">Your Phase 1 hotel-room calisthenics + timers</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btnInstall" class="ghost" hidden>Add to Home Screen</button>
+      <button id="btnSettings" class="ghost">Settings</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="left">
+      <div class="panel">
+        <div class="panelHeader">
+          <h2>Workout</h2>
+          <select id="workoutSelect" aria-label="Workout">
+            <option value="A">Day A – Lower Body + Core</option>
+            <option value="B">Day B – Upper Body</option>
+            <option value="C">Day C – Full Body Flow</option>
+            <option value="E">10-Min Emergency</option>
+          </select>
+        </div>
+
+        <div class="list" id="exerciseList"></div>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="panel hero">
+        <div class="heroTop">
+          <div>
+            <h2 id="exName">Select an exercise</h2>
+            <div class="meta" id="exMeta">Tap any exercise on the left.</div>
+          </div>
+          <div class="mode">
+            <label class="switch">
+              <input type="checkbox" id="intervalMode" />
+              <span class="slider"></span>
+            </label>
+            <div class="modeText">
+              <div class="modeTitle">Interval mode</div>
+              <div class="modeSub">Timed work/rest (good for conditioning)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demoWrap">
+          <div class="demo" id="demoArea" aria-label="Exercise demo"></div>
+          <div class="cues">
+            <h3>Coach cues</h3>
+            <ul id="exCues"></ul>
+          </div>
+        </div>
+
+        <div class="timerRow">
+          <div class="timerBox">
+            <div class="timerLabel" id="timerLabel">Ready</div>
+            <div class="timer" id="timer">00:00</div>
+            <div class="timerSmall" id="timerHint">Use Start to begin. Stop anytime.</div>
+          </div>
+          <div class="timerBtns">
+            <button id="btnStart" class="primary">Start</button>
+            <button id="btnStop" class="danger">Stop</button>
+            <button id="btnNext" class="ghost">Next</button>
+          </div>
+        </div>
+
+        <div class="setRow" id="setRow">
+          <div class="setInfo">
+            <div class="setTitle">Sets</div>
+            <div class="setProgress" id="setProgress">—</div>
+          </div>
+          <button id="btnSetDone" class="ghost">Complete set → Rest</button>
+        </div>
+      </div>
+
+      <div class="panel notes">
+        <h3>Quick help</h3>
+        <div class="noteGrid">
+          <div class="noteCard">
+            <div class="noteTitle">How to use</div>
+            <p>Pick Day A/B/C, tap an exercise, then press <b>Start</b>. In normal mode, tap <b>Complete set</b> after each set to start the rest timer. In Interval mode, Start runs work→rest automatically.</p>
+          </div>
+          <div class="noteCard">
+            <div class="noteTitle">Best default</div>
+            <p>Start in normal mode with <b>60–90s rest</b>. Use Interval mode later for conditioning (e.g., 40s work / 20s rest).</p>
+          </div>
+          <div class="noteCard">
+            <div class="noteTitle">Add to Home Screen</div>
+            <p>On iPhone/iPad: open this in Safari → Share → <b>Add to Home Screen</b>. On Mac: open the folder and double-click <b>index.html</b>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Settings modal -->
+  <dialog id="settingsModal">
+    <form method="dialog" class="modal">
+      <div class="modalHeader">
+        <h3>Settings</h3>
+        <button class="ghost" value="cancel">Close</button>
+      </div>
+
+      <div class="modalBody">
+        <div class="field">
+          <label for="restSeconds">Rest timer (seconds)</label>
+          <input id="restSeconds" type="number" min="10" max="300" step="5" />
+        </div>
+        <div class="field">
+          <label for="workSeconds">Interval mode: work (seconds)</label>
+          <input id="workSeconds" type="number" min="10" max="600" step="5" />
+        </div>
+        <div class="field">
+          <label for="intervalRestSeconds">Interval mode: rest (seconds)</label>
+          <input id="intervalRestSeconds" type="number" min="5" max="300" step="5" />
+        </div>
+        <div class="field">
+          <label for="soundOn">Beeps</label>
+          <select id="soundOn">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="autoAdvance">Interval mode: auto-advance exercises</label>
+          <select id="autoAdvance">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modalFooter">
+        <button id="btnResetDefaults" class="ghost" value="none" type="button">Reset defaults</button>
+        <button class="primary" value="ok">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
